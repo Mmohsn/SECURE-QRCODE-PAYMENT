@@ -1,28 +1,37 @@
-# Secure QR Code Payment Ecosystem
+# QRShield: Secure QR Code Payment Ecosystem with Fraud Detection Model
 
 ## 📌 Overview
 
-The **Secure QR Code Payment Ecosystem** is a robust, scalable, and secure platform designed to enable seamless QR-based financial transactions. The ecosystem integrates secure payment protocols, encrypted QR generation and scanning, user authentication, and payment gateway integration. Its primary focus is ensuring transaction confidentiality, integrity, and availability while remaining compliant with modern financial security standards.
+The **QRShield** project focuses on building a **machine learning-based model** to enhance the security of QR code payment systems by detecting and preventing fraudulent transactions. Using a **Random Forest Classifier** trained on a financial transaction dataset, QRShield identifies potentially fraudulent activities in real time. The classified data is embedded into QR codes for secure payment execution.
 
-This solution is designed to serve merchants, customers, and payment processors by providing:
+This solution integrates:
 
-* A frictionless payment experience for customers.
-* A secure, auditable transaction flow for merchants.
-* Easy integration points for payment service providers.
+* **Machine learning fraud detection models**
+* **Dynamic QR code generation**
+* **End-to-end encryption and secure protocols**
+
+Our role in this project is the development and integration of the **fraud detection model** within the secure payment ecosystem.
 
 ---
 
 ## 🎯 Objectives
 
-* **Security First**: Enforce high-level encryption for data at rest and in transit.
-* **Fraud Prevention**: Use blockchain or tokenization to avoid duplication or tampering of QR codes.
+* **Analyze vulnerabilities** in QR code payment transactions.
+* **Develop a fraud detection model** using Random Forest on financial datasets.
+* **Embed transaction verification results** into dynamic QR codes.
+* **Integrate the model into QRShield** for real-time fraud prevention.
+* **Evaluate model performance** using accuracy, precision, recall, and feature importance.
+
 ---
 
 ## 🚀 Features
 
-* **Dynamic QR Code Generation**: Each transaction generates a unique, encrypted QR code.
-* **End-to-End Encryption**: All communication between client apps and servers is encrypted.
-* **Fraud Detection**: Real-time anomaly detection using AI-based scoring.
+* **Random Forest Fraud Detection Model** trained on Kaggle PaySim dataset.
+* **Dynamic QR Code Embedding** with transaction classification results.
+* **Automatic flagging of suspicious transactions**.
+* **Secure scanning & decoding** of QR codes with fraud status.
+* **Encryption & secure protocols** for data integrity.
+
 ---
 
 ## 🛠 System Architecture
@@ -31,33 +40,65 @@ This solution is designed to serve merchants, customers, and payment processors 
 
 **Core Components:**
 
-* **Mobile Application (Customer)**: Generates and scans QR codes, initiates payments.
-* **Merchant Application / POS**: Receives and validates QR-based payment requests.
-* **Backend API Server**: Handles authentication, QR code generation, and transaction validation.
-* **Database**: Stores encrypted transaction logs and user data.
+* **Random Forest Model** (20 estimators) – fraud detection engine.
+* **QR Code Generator** – encodes classified transaction data.
+* **QR Code Scanner & Decoder** – reads encoded data.
+* **Backend API** – handles classification requests and responses.
+* **Database** – stores historical transaction and classification data.
 
 **Workflow:**
 
-1. Customer selects payment option in the mobile app.
-2. Mobile app generates a secure QR code with encrypted payment details.
-3. Merchant scans the QR code through POS or merchant app.
-4. Backend API validates the payment request, processes it via the payment gateway.
-5. Transaction result is confirmed to both merchant and customer.
+1. Input transaction data is collected from payment app.
+2. Data is preprocessed and fed into the Random Forest classifier.
+3. Model predicts fraud probability.
+4. Classification result is embedded into a dynamic QR code.
+5. Merchant scans QR code for transaction execution.
+6. Fraudulent transactions are flagged for review or automatic block.
+
+---
+
+## 📊 Dataset
+
+* **Source**: [Kaggle PaySim Dataset](https://www.kaggle.com/datasets/ntnu-testimon/paysim1)
+* **Description**: Simulated financial transaction dataset designed for fraud detection.
+* **Features Used**: transaction type, amount, oldbalanceOrg, newbalanceOrig, oldbalanceDest, newbalanceDest.
+* **Fraud Label**: Binary classification (fraudulent vs non-fraudulent).
+
+---
+
+## 🔍 Model Development
+
+**Random Forest Classifier (20 estimators):**
+
+* Reduces overfitting by combining multiple decision trees.
+* Handles imbalanced datasets by stratified sampling.
+* Provides feature importance to identify key fraud indicators.
+
+**Key Features Identified:**
+
+* `oldbalanceOrg` – highest importance in predicting fraud.
+* `newbalanceDest` – second most important.
+* `amount` – moderate influence.
+
+Model performance:
+
+* **Accuracy**: 99.98%
+* **Precision & Recall**: Balanced to minimize false positives.
+
+---
+
+## 🔗 QR Code Integration
+
+* Model output is embedded in dynamic QR codes.
+* Encoded information includes fraud risk flag.
+* Merchant-side scanner reads QR code and verifies fraud status before executing payment.
 
 ---
 
 ## 📸 Screenshots & Diagrams
 
-![App UI](assets/image3.png)
-![Payment Flow](assets/image4.png)
-![Security Layers](assets/image5.png)
-![Blockchain Logging](assets/image6.png)
+![Model Flow](assets/image3.png)
+![Fraud Detection Results](assets/image4.png)
+![QR Integration](assets/image5.png)
 
 ---
-
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
