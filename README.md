@@ -36,7 +36,7 @@ Our role in this project is the development and integration of the **fraud detec
 
 ## 🛠 System Architecture
 
-![System Architecture](assets/image2.svg)
+![System Architecture](ARCH.svg)
 
 **Core Components:**
 
@@ -45,6 +45,8 @@ Our role in this project is the development and integration of the **fraud detec
 * **QR Code Scanner & Decoder** – reads encoded data.
 * **Backend API** – handles classification requests and responses.
 * **Database** – stores historical transaction and classification data.
+
+![System Components](Model-Pipeline.png)
 
 **Workflow:**
 
@@ -63,12 +65,17 @@ Our role in this project is the development and integration of the **fraud detec
 * **Description**: Simulated financial transaction dataset designed for fraud detection.
 * **Features Used**: transaction type, amount, oldbalanceOrg, newbalanceOrig, oldbalanceDest, newbalanceDest.
 * **Fraud Label**: Binary classification (fraudulent vs non-fraudulent).
+### Fraud QR
+![FraudQR](FraudQRCode.png)
+
+### Non-Fraud QR
+![NONFraudQR](NONFraudQR.png)
 
 ---
 
 ## 🔍 Model Development
 
-**Random Forest Classifier (20 estimators):**
+**Random Forest Classifier (200 estimators):**
 
 * Reduces overfitting by combining multiple decision trees.
 * Handles imbalanced datasets by stratified sampling.
@@ -79,11 +86,20 @@ Our role in this project is the development and integration of the **fraud detec
 * `oldbalanceOrg` – highest importance in predicting fraud.
 * `newbalanceDest` – second most important.
 * `amount` – moderate influence.
+* 
+![Features-TRxs](TRXs-Types.png)
+
+![Features](Model.png)
+
 
 Model performance:
 
 * **Accuracy**: 99.98%
 * **Precision & Recall**: Balanced to minimize false positives.
+
+![ConfusionMatrix](ConfusionMatrix.png)
+
+![ROC](ROCCurve.png)
 
 ---
 
@@ -92,13 +108,5 @@ Model performance:
 * Model output is embedded in dynamic QR codes.
 * Encoded information includes fraud risk flag.
 * Merchant-side scanner reads QR code and verifies fraud status before executing payment.
-
----
-
-## 📸 Screenshots & Diagrams
-
-![Model Flow](assets/image3.png)
-![Fraud Detection Results](assets/image4.png)
-![QR Integration](assets/image5.png)
 
 ---
